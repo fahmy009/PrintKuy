@@ -6,6 +6,11 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style>
+		.borderless td, .borderless th {
+			border: none;
+		}
+	</style>
 </head>
 <body>
 	<div class="container">
@@ -71,7 +76,7 @@
 		</nav>
 		<br>
 		<div class="text-center">
-			<table class="table">
+			<table class="table borderless">
 				<thead style="color: white; background-color: #5D4B3E; border-color:  #5D4B3E;">
 					<tr>
 						<th class="text-center">Nomor</th>
@@ -80,6 +85,7 @@
 						<th class="text-center">Nama Customer</th>
 						<th class="text-center">Alamat</th>
 						<th class="text-center">Ambil</th>
+						<th class="text-center">Status Print</th>
 						<th class="text-center">Aksi</th>
 					</tr>
 				</thead>
@@ -90,6 +96,17 @@
 					$print = $model->showAll();
 					foreach ($print as $print) {
 						$idwew = $print['id_print'];
+						if ($print['status_print'] == "Sudah Diprint") {
+							$warnaPrint = "btn btn-success";
+						} else {
+							$warnaPrint = "btn btn-danger";
+						}
+
+						if ($print['status_diterima'] == "Diterima") {
+							$warnaDiterima = "btn btn-success";
+						} else {
+							$warnaDiterima = "btn btn-danger";
+						}
 						?>
 						<tr>
 							<td><?php echo $print['id_print']; ?></td>
@@ -97,7 +114,8 @@
 							<td><?php echo $print['nama_file']; ?></td>
 							<td><?php echo $print['nama_customer']; ?></td>
 							<td><?php echo $print['alamat']; ?></td>
-							<td><?php echo $print['status_diterima']; ?></td>
+							<td><button disabled href="#" class="<?php echo $warnaDiterima; ?>"><?php echo $print['status_diterima']; ?></button></td>
+							<td><button disabled href="#" class="<?php echo $warnaPrint; ?>"><?php echo $print['status_print']; ?></button></td>
 							<td><a href="<?php echo $this->config['route']->getAlamatRoot().'?c=c_print&f=updatePrint&id='.$idwew?>" class="btn btn-info">Print</a></td>
 						</tr>
 					<?php } ?>

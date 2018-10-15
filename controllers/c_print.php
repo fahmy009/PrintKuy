@@ -9,41 +9,29 @@ class c_print {
     $route = new route();
   }
 
-  function indexPengeprint(){
-    include_once('./views/adminPengeprint/index.php');
-  }
-
-  function status(){
-    include_once('./views/adminPengeprint/status.php');
-  }
-
-  function indexTempat(){
-    include_once('./views/adminTempat/index.php');
-  }
-
-  function statusPrint(){
-    include_once('./views/adminTempat/sudahdiprint.php');
-  }
-
   function hapusPengeprint(){
    $id = $_GET['id'];
    $model = new m_print();
    $model->delete($id);
-   $this->config['route']->redirect('c_print','indexPengeprint');
+   $this->config['route']->redirect('c_user','homePengeprint');
  }
 
  function hapusTempat(){
    $id = $_GET['id'];
    $model = new m_print();
    $model->delete($id);
-   $this->config['route']->redirect('c_print','indexTempat');
+   $this->config['route']->redirect('c_user','homeTempatPrint');
  }
 
  function tambah(){
   $nama_customer = $_SESSION['username'];
   $penerima = $_SESSION['username'];
-  $alamat = $_POST['alamat'];
   $tempat = $_POST['tempat_print'];
+  if (isset($_POST['alamat'])) {
+    $alamat = $_POST['alamat'];
+  } else {
+    $alamat = "Diambil Sendiri";
+  }
   //function file
   $file = $_FILES['file']['name'];
   $tmp = $_FILES['file']['tmp_name'];
@@ -52,7 +40,7 @@ class c_print {
   if (move_uploaded_file($tmp, $path)) {
     $model = new m_print();
     $model->tambahPrint($filebaru, $tempat, $alamat, $nama_customer, $penerima);
-    $this->config['route']->redirect('c_print','indexPengeprint');
+    $this->config['route']->redirect('c_user','statusPengeprint');
   }
 }
 
@@ -60,7 +48,14 @@ class c_print {
    $id = $_GET['id'];
    $model = new m_print();
    $model->updatePrint($id);
-   $this->config['route']->redirect('c_print','statusPrint');
+   $this->config['route']->redirect('c_user','homeTempatPrint');
+ }
+
+ function updateDiterima(){
+   $id = $_GET['id'];
+   $model = new m_print();
+   $model->updateDiterima($id);
+   $this->config['route']->redirect('c_user','sudahDiprint');
  }
 
 

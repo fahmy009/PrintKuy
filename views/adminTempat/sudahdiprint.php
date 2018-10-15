@@ -82,6 +82,7 @@
 						<th class="text-center">Status Print</th>
 						<th class="text-center">Status Diterima</th>
 						<th class="text-center">Penerima</th>
+						<th class="text-center">Aksi</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -90,15 +91,28 @@
 					$model = new m_print();
 					$print = $model->showAll();
 					foreach ($print as $print) {
+						$idwew = $print['id_print'];
+						if ($print['status_print'] == "Sudah Diprint") {
+							$warnaPrint = "btn btn-success";
+						} else {
+							$warnaPrint = "btn btn-danger";
+						}
+
+						if ($print['status_diterima'] == "Diterima") {
+							$warnaDiterima = "btn btn-success";
+						} else {
+							$warnaDiterima = "btn btn-danger";
+						}
 						?>
 						<tr>
 							<td><?php echo $print['id_print']; ?></td>
 							<td><?php echo $print['tanggal']; ?></td>
 							<td><?php echo $print['nama_file']; ?></td>
 							<td><?php echo $print['nama_customer']; ?></td>
-							<td><?php echo $print['status_print']; ?></td>
-							<td><?php echo $print['status_diterima']; ?></td>
+							<td><button disabled href="#" class="<?php echo $warnaPrint; ?>"><?php echo $print['status_print']; ?></button></td>
+							<td><button disabled href="#" class="<?php echo $warnaDiterima; ?>"><?php echo $print['status_diterima']; ?></button></td>
 							<td><?php echo $print['penerima']; ?></td>
+							<td><a href="<?php echo $this->config['route']->getAlamatRoot().'?c=c_print&f=updateDiterima&id='.$idwew?>" class="btn btn-info">Print</a></td>
 						</tr>
 					<?php } ?>
 				</tbody>

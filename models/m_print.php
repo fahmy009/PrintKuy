@@ -27,5 +27,9 @@ class m_print{
 	function updatePrint($id){
 		$this->db->query("update print set status_print='Sudah Diprint' where id_print=$id");
 	}
+
+	function updateDiterima($id){
+		$this->db->query("update print set status_diterima='Diterima' where id_print=$id");
+	}
 }
 ?>
