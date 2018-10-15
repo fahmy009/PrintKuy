@@ -1,0 +1,5 @@
+1. folder yang di master jangan dirubah2 dan jangan digonta ganti
+2. kalo mau buka harus online dulu biar bootstrapnya jalan (soalnya pakek online)
+3. ini mvc kalo gak paham langsung hubungi aja
+4. masih dalam pengembangan
+5. kalo mau ganti gambar src="./assets/img/namagambar.jpg(png juga bisa pokok gambar)"
