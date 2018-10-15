@@ -112,7 +112,7 @@
 							<td><button disabled href="#" class="<?php echo $warnaPrint; ?>"><?php echo $print['status_print']; ?></button></td>
 							<td><button disabled href="#" class="<?php echo $warnaDiterima; ?>"><?php echo $print['status_diterima']; ?></button></td>
 							<td><?php echo $print['penerima']; ?></td>
-							<td><a href="<?php echo $this->config['route']->getAlamatRoot().'?c=c_print&f=updateDiterima&id='.$idwew?>" class="btn btn-info">Print</a></td>
+							<td><a href="<?php echo $this->config['route']->getAlamatRoot().'?c=c_print&f=updateDiterima&id='.$idwew?>" class="btn btn-info">Diterima</a></td>
 						</tr>
 					<?php } ?>
 				</tbody>
